@@ -1,0 +1,23 @@
+# Java
+*.class
+*.jar
+*.war
+
+# Gradle
+.gradle
+**/build/
+!src/**/build/
+!gradle-wrapper.jar
+!gradle-wrapper.properties
+
+# Log file
+
+# Editor settings
+.project
+.settings
+.classpath
+
+# Logs, crashes and dumps
+*.log
+hs_err_pid*
+replay_pid*

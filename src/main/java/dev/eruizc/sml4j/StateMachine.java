@@ -1,4 +1,4 @@
-package sm;
+package dev.eruizc.sml4j;
 
 import java.util.stream.*;
 

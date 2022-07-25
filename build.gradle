@@ -2,6 +2,10 @@ plugins {
     id 'java-library'
 }
 
+group = 'dev.eruizc'
+version = System.env.BUILD_VERSION
+sourceCompatibility = '11'
+
 repositories {
     mavenCentral()
 }

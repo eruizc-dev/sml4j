@@ -5,12 +5,8 @@
 
 # Gradle
 .gradle
-**/build/
-!src/**/build/
-!gradle-wrapper.jar
-!gradle-wrapper.properties
-
-# Log file
+build/
+!gradle/wrapper/
 
 # Editor settings
 .project

@@ -1,5 +1,5 @@
 plugins {
-    id 'java-library'
+  id 'java-library'
 }
 
 group = 'dev.eruizc'
@@ -7,17 +7,17 @@ version = System.env.BUILD_VERSION
 sourceCompatibility = '11'
 
 repositories {
-    mavenCentral()
+  mavenCentral()
 }
 
 dependencies {
-    testImplementation('org.junit.jupiter:junit-jupiter:5.8.2')
+  testImplementation('org.junit.jupiter:junit-jupiter:5.8.2')
 }
 
 testing {
-    suites {
-        test {
-            useJUnitJupiter('5.8.2')
-        }
+  suites {
+    test {
+      useJUnitJupiter('5.8.2')
     }
+  }
 }

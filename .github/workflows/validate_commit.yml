@@ -9,10 +9,12 @@ on:
 jobs:
   style:
     runs-on: ubuntu-latest
+    container:
+      image: mstruebing/editorconfig-checker
     steps:
     - uses: actions/checkout@v3
     - name: Check editorconfig
-      run: docker run --rm --volume=$PWD:/check mstruebing/editorconfig-checker
+      run: ec
   test:
     runs-on: ubuntu-latest
     steps:

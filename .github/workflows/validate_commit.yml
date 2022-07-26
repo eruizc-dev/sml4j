@@ -7,7 +7,13 @@ on:
     branches: [ master ]
 
 jobs:
-  check:
+  style:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Check editorconfig
+      run: docker run --rm --volume=$PWD:/check mstruebing/editorconfig-checker
+  test:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
@@ -16,9 +22,5 @@ jobs:
       with:
         java-version: 11
         distribution: temurin
-    - name: Install dependencies
-      run: ./gradlew dependencies
-    - name: Build
-      run: ./gradlew build
     - name: Test
       run: ./gradlew test

@@ -1,6 +1,7 @@
 plugins {
   id 'java-library'
   id 'maven-publish'
+  id 'signing'
 }
 
 group = 'dev.eruizc'
@@ -25,6 +26,8 @@ testing {
 
 /* Check out the docs:
  *  - https://docs.gradle.org/current/userguide/publishing_maven.html
+ *  - https://central.sonatype.org/publish/publish-guide
+ *  - https://www.youtube.com/watch?v=24gsrR9jsF4
  * */
 publishing {
   publications {
@@ -64,9 +67,18 @@ publishing {
 
   repositories {
     maven {
-      def releasesRepoUrl = layout.buildDirectory.dir('repos/releases')
-      def snapshotsRepoUrl = layout.buildDirectory.dir('repos/snapshots')
-      url = project.hasProperty('release') ? releasesRepoUrl : snapshotsRepoUrl
+      name = 'OSSRH'
+      def releaseRepo = 'https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/' 
+      def snapshotRepo = 'https://s01.oss.sonatype.org/content/repositories/snapshots/'
+      url = project.hasProperty('release') ? releaseRepo : snapshotRepo
+      credentials {
+        username = project.properties['ossrh.username']
+        password = project.properties['ossrh.password']
+      }
     }
   }
+}
+
+signing {
+  sign publishing.publications.maven
 }

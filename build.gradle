@@ -61,4 +61,12 @@ publishing {
       }
     }
   }
+
+  repositories {
+    maven {
+      def releasesRepoUrl = layout.buildDirectory.dir('repos/releases')
+      def snapshotsRepoUrl = layout.buildDirectory.dir('repos/snapshots')
+      url = project.hasProperty('release') ? releasesRepoUrl : snapshotsRepoUrl
+    }
+  }
 }

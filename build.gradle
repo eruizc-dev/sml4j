@@ -23,11 +23,42 @@ testing {
   }
 }
 
+/* Check out the docs:
+ *  - https://docs.gradle.org/current/userguide/publishing_maven.html
+ * */
 publishing {
   publications {
     maven(MavenPublication) {
       artifactId = 'sml4j'
       from components.java
+
+      pom {
+        name = 'sml4j'
+        description = 'A State Machine Library for Java projects'
+        url = 'https://github.com/eruizc-dev/sml4j'
+        inceptionYear = '2022'
+
+        licenses {
+          license {
+            name = 'MIT License'
+            url = 'https://github.com/eruizc-dev/sml4j/blob/master/LICENSE'
+          }
+        }
+
+        developers {
+          developer {
+            id = 'eruizc-dev'
+            name = 'Emiliano Ruiz Carletti'
+            email = 'contact@eruizc.dev'
+          }
+        }
+
+        scm {
+          connection = 'scm:git:git://github.com/eruizc-dev/sml4j.git'
+          developerConnection = 'scm:git:ssh://github.com/eruizc-dev/sml4j.git'
+          url = 'https://github.com/eruizc-dev/sml4j'
+        }
+      }
     }
   }
 }

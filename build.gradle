@@ -24,11 +24,9 @@ testing {
   }
 }
 
-/* Check out the docs:
- *  - https://docs.gradle.org/current/userguide/publishing_maven.html
- *  - https://central.sonatype.org/publish/publish-guide
- *  - https://www.youtube.com/watch?v=24gsrR9jsF4
- * */
+// https://docs.gradle.org/current/userguide/publishing_maven.html
+// https://central.sonatype.org/publish/publish-guide
+// https://www.youtube.com/watch?v=24gsrR9jsF4
 publishing {
   publications {
     maven(MavenPublication) {
@@ -79,6 +77,7 @@ publishing {
   }
 }
 
+// https://docs.gradle.org/current/userguide/signing_plugin.html
 signing {
   useInMemoryPgpKeys(System.env.GPG_ARMORED_KEY, System.env.GPG_PASSPHRASE)
   sign publishing.publications.maven

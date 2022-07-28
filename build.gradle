@@ -72,13 +72,14 @@ publishing {
       def snapshotRepo = 'https://s01.oss.sonatype.org/content/repositories/snapshots/'
       url = project.hasProperty('release') ? releaseRepo : snapshotRepo
       credentials {
-        username = project.properties['ossrh.username']
-        password = project.properties['ossrh.password']
+        username = System.env.OSSRH_USERNAME
+        password = System.env.OSSRH_PASSWORD
       }
     }
   }
 }
 
 signing {
+  useInMemoryPgpKeys(System.env.GPG_ARMORED_KEY, System.env.GPG_PASSPHRASE)
   sign publishing.publications.maven
 }

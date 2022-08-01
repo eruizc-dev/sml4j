@@ -16,11 +16,11 @@ public class LightSwitchTest {
 
 	@BeforeEach
 	void beforeEach() {
-		lightSwitch = new StateMachine<>(
-				Status.OFF,
-				new Transition<>(Status.OFF, Actions.TURN_ON, Status.ON),
-				new Transition<>(Status.ON, Actions.TURN_OFF, Status.OFF)
-		);
+		lightSwitch = new StateMachineBuilder<Status, Actions>()
+				.initialState(Status.OFF)
+				.allowTransition(Status.OFF, Actions.TURN_ON, Status.ON)
+				.allowTransition(Status.ON, Actions.TURN_OFF, Status.OFF)
+				.build();
 	}
 
 	@Test

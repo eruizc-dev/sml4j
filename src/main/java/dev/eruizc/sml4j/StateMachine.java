@@ -1,26 +1,25 @@
 package dev.eruizc.sml4j;
 
-import java.util.stream.*;
+import java.util.List;
 
-public class StateMachine<State, Action> {
-	private final Transition<State, Action>[] transitions;
-	private State state;
+public class StateMachine<S, A> {
+	private final List<Transition<S, A>> transitions;
+	private S state;
 
-	@SafeVarargs
-	public StateMachine(State initialState, Transition<State, Action>... transitions) {
+	StateMachine(S initialState, List<Transition<S, A>> transitions) {
 		this.transitions = transitions;
 		this.state = initialState;
 	}
 
-	public State getState() {
+	public S getState() {
 		return this.state;
 	}
 
-	public void transition(Action action) {
-		var transition = Stream.of(transitions)
-			.filter(t -> t.matches(state, action))
-			.findFirst()
-			.orElseThrow(() -> new IllegalStateException("Illegal state transition from " + this.state + " with action " + action));
+	public void transition(A action) {
+		var transition = transitions.stream()
+				.filter(t -> t.matches(state, action))
+				.findFirst()
+				.orElseThrow(() -> new IllegalStateException("Illegal state transition from " + this.state + " with action " + action));
 		this.state = transition.getTo();
 	}
 }

@@ -1,6 +1,6 @@
 package dev.eruizc.sml4j;
 
-public class Transition<State, Action> {
+class Transition<State, Action> {
 	private final State from;
 	private final Action action;
 	private final State to;

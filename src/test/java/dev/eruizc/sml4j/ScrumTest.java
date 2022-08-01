@@ -27,13 +27,13 @@ public class ScrumTest {
 
 	@BeforeEach
 	void beforeEach() {
-		card = new StateMachine<>(
-				Column.BACKLOG,
-				new Transition<>(Column.BACKLOG, Actions.START, Column.WIP),
-				new Transition<>(Column.WIP, Actions.REQUEST_REVIEW, Column.REVIEW),
-				new Transition<>(Column.REVIEW, Actions.APPROVE, Column.DONE),
-				new Transition<>(Column.REVIEW, Actions.REJECT, Column.WIP)
-		);
+		card = new StateMachineBuilder<Column, Actions>()
+				.initialState(Column.BACKLOG)
+				.allowTransition(Column.BACKLOG, Actions.START, Column.WIP)
+				.allowTransition(Column.WIP, Actions.REQUEST_REVIEW, Column.REVIEW)
+				.allowTransition(Column.REVIEW, Actions.APPROVE, Column.DONE)
+				.allowTransition(Column.REVIEW, Actions.REJECT, Column.WIP)
+				.build();
 	}
 
 	@Test

@@ -1,5 +1,7 @@
 plugins {
   id 'java-library'
+  id 'maven-publish'
+  id 'signing'
 }
 
 group = 'dev.eruizc'
@@ -20,4 +22,63 @@ testing {
       useJUnitJupiter('5.8.2')
     }
   }
+}
+
+// https://docs.gradle.org/current/userguide/publishing_maven.html
+// https://central.sonatype.org/publish/publish-guide
+// https://www.youtube.com/watch?v=24gsrR9jsF4
+publishing {
+  publications {
+    maven(MavenPublication) {
+      artifactId = 'sml4j'
+      from components.java
+
+      pom {
+        name = 'sml4j'
+        description = 'A State Machine Library for Java projects'
+        url = 'https://github.com/eruizc-dev/sml4j'
+        inceptionYear = '2022'
+
+        licenses {
+          license {
+            name = 'MIT License'
+            url = 'https://github.com/eruizc-dev/sml4j/blob/master/LICENSE'
+          }
+        }
+
+        developers {
+          developer {
+            id = 'eruizc-dev'
+            name = 'Emiliano Ruiz Carletti'
+            email = 'contact@eruizc.dev'
+          }
+        }
+
+        scm {
+          connection = 'scm:git:git://github.com/eruizc-dev/sml4j.git'
+          developerConnection = 'scm:git:ssh://github.com/eruizc-dev/sml4j.git'
+          url = 'https://github.com/eruizc-dev/sml4j'
+        }
+      }
+    }
+  }
+
+  repositories {
+    maven {
+      name = 'OSSRH'
+      def releaseRepo = 'https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/' 
+      def snapshotRepo = 'https://s01.oss.sonatype.org/content/repositories/snapshots/'
+      url = project.hasProperty('release') ? releaseRepo : snapshotRepo
+      credentials {
+        username = System.env.OSSRH_USERNAME
+        password = System.env.OSSRH_PASSWORD
+      }
+    }
+  }
+}
+
+// https://docs.gradle.org/current/userguide/signing_plugin.html
+signing {
+  useInMemoryPgpKeys(System.env.GPG_ARMORED_KEY, System.env.GPG_PASSPHRASE)
+  sign publishing.publications.maven
 }

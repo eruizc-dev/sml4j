@@ -26,6 +26,8 @@ jobs:
       run: ./gradlew build
     - name: Test
       run: ./gradlew test
+    - name: Coverage verification
+      run: ./gradlew jacocoTestCoverageVerification
     - name: Publish
       run: ./gradlew publish
       env:

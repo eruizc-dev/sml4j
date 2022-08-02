@@ -2,6 +2,7 @@ plugins {
   id 'java-library'
   id 'maven-publish'
   id 'signing'
+  id 'jacoco'
 }
 
 group = 'dev.eruizc'
@@ -21,6 +22,25 @@ testing {
     test {
       useJUnitJupiter('5.8.2')
     }
+  }
+}
+
+jacocoTestCoverageVerification {
+  dependsOn test
+  violationRules {
+    rule {
+      limit {
+        minimum = 0.95
+      }
+    }
+  }
+}
+
+jacocoTestReport {
+  dependsOn test
+  reports {
+    xml.required = false
+    csv.required = false
   }
 }
 

@@ -26,3 +26,5 @@ jobs:
         distribution: temurin
     - name: Test
       run: ./gradlew test
+    - name: Coverage verification
+      run: ./gradlew jacocoTestCoverageVerification

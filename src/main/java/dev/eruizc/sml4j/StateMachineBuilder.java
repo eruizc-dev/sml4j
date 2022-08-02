@@ -12,8 +12,12 @@ public class StateMachineBuilder<S, A> {
 	/**
 	 * @param initialState The initial state for the State Machine
 	 * @return Builder
+	 * @throws UnsupportedOperationException Can only define initial state once
 	 */
 	public StateMachineBuilder<S, A> initialState(S initialState) {
+		if (this.initialState != null) {
+			throw new UnsupportedOperationException("Can only define initial state once");
+		}
 		this.initialState = initialState;
 		return this;
 	}

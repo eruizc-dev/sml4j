@@ -11,10 +11,6 @@ class Transition<State, Action> {
 		this.to = to;
 	}
 
-	public Action getAction() {
-		return action;
-	}
-
 	public State getTo() {
 		return to;
 	}

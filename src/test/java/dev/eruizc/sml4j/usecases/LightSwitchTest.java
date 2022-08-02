@@ -1,7 +1,8 @@
-package dev.eruizc.sml4j;
+package dev.eruizc.sml4j.usecases;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import dev.eruizc.sml4j.*;
 import org.junit.jupiter.api.*;
 
 /*

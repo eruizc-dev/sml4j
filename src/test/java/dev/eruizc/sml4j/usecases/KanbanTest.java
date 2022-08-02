@@ -1,11 +1,12 @@
-package dev.eruizc.sml4j;
+package dev.eruizc.sml4j.usecases;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import dev.eruizc.sml4j.*;
 import org.junit.jupiter.api.*;
 
 /*
- * State machine of a card trhrough a Scrum board
+ * State machine of a card going through a Kanban board
  *
  * A card starts in the backlog
  * Can be started
@@ -14,7 +15,7 @@ import org.junit.jupiter.api.*;
  * If approved, goes to done
  * If rejected, goes back to wip
  * */
-public class ScrumTest {
+public class KanbanTest {
 	StateMachine<Column, Actions> card;
 
 	static enum Column {

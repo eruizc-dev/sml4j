@@ -23,8 +23,12 @@ public class StateMachineBuilder<S, A> {
 	 * @param action Allowed action given the initial state
 	 * @param to Resulting state
 	 * @return Builder
+	 * @throws IllegalStateException The transition defines a Non-Deterministic State Machine which are not supported by this library yet
 	 */
 	public StateMachineBuilder<S, A> allowTransition(S from, A action, S to) {
+		if (transitions.stream().anyMatch(t -> t.matches(from, action))) {
+			throw new UnsupportedOperationException("Transition defines a Non-Deterministic State Machine which are not supported by sml4j yet");
+		}
 		var transition = new Transition<>(from, action, to);
 		transitions.add(transition);
 		return this;

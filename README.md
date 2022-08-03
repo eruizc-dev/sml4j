@@ -9,7 +9,7 @@ import dev.eruizc.sml4j.StateMachineBuilder;
 
 public class LightSwitch {
 	private final StateMachine<State, Action> sm = new StateMachineBuilder<State, Action>()
-		.initialState(State.OFF)								// Starts OFF
+		.initialState(State.OFF)				// Starts OFF
 		.allowTransition(State.OFF, Action.TURN_ON, State.ON)	// When off, allow it to turn_on, to change state to on
 		.allowTransition(State.ON, Action.TURN_OFF, State.OFF)	// When on, allow turn_off, to change state to off
 		.build();

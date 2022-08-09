@@ -8,6 +8,9 @@ import dev.eruizc.sml4j.StateMachine;
 import dev.eruizc.sml4j.StateMachineBuilder;
 
 public class LightSwitch {
+  enum State { ON, OFF };
+  enum Action { TURN_ON, TURN_OFF };
+
   private final StateMachine<State, Action> sm = new StateMachineBuilder<State, Action>()
     .initialState(State.OFF)					// Starts OFF
     .allowTransition(State.OFF, Action.TURN_ON, State.ON)	// When off, allow it to turn_on, to change state to on
@@ -25,9 +28,6 @@ public class LightSwitch {
   public void turnOff() {
     sm.transition(Action.TURN_OFF);
   }
-
-  enum State { ON, OFF };
-  enum Action { TURN_ON, TURN_OFF };
 }
 ```
 

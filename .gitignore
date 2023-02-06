@@ -9,6 +9,7 @@ build/
 !gradle/wrapper/
 
 # Editor settings
+.metadata
 .project
 .settings
 .classpath

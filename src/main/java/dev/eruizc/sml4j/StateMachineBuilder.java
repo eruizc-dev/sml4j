@@ -11,15 +11,9 @@ public class StateMachineBuilder<S, A> {
 
 	/**
 	 * @param initialState The initial state for the State Machine
-	 * @return Builder
-	 * @throws UnsupportedOperationException Can only define initial state once
 	 */
-	public StateMachineBuilder<S, A> initialState(S initialState) {
-		if (this.initialState != null) {
-			throw new UnsupportedOperationException("Can only define initial state once");
-		}
+	public StateMachineBuilder(S initialState) {
 		this.initialState = initialState;
-		return this;
 	}
 
 	/**
@@ -40,12 +34,8 @@ public class StateMachineBuilder<S, A> {
 
 	/**
 	 * @return The built State Machine
-	 * @throws IllegalStateException Initial state cannot be null
 	 */
 	public StateMachine<S, A> build() {
-		if (this.initialState == null) {
-			throw new IllegalStateException("Initial state cannot be null");
-		}
-		return new StateMachine<S, A>(initialState, transitions);
+		return new StateMachine<>(initialState, transitions);
 	}
 }

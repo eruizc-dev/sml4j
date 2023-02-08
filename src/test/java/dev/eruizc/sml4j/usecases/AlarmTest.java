@@ -23,8 +23,7 @@ public class AlarmTest {
 
 	@BeforeEach
 	void beforeEach() {
-		alarm = new StateMachineBuilder<State, Action>()
-			.initialState(State.OFF)
+		alarm = new StateMachineBuilder<State, Action>(State.OFF)
 			.allowTransition(State.OFF, Action.TURN_ON, State.ON)
 			.allowTransition(State.OFF, Action.TURN_OFF, State.OFF)
 			.allowTransition(State.ON, Action.TURN_ON, State.ON)

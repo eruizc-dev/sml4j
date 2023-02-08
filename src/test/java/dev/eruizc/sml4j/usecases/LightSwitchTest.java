@@ -17,8 +17,7 @@ public class LightSwitchTest {
 
 	@BeforeEach
 	void beforeEach() {
-		lightSwitch = new StateMachineBuilder<Status, Actions>()
-				.initialState(Status.OFF)
+		lightSwitch = new StateMachineBuilder<Status, Actions>(Status.OFF)
 				.allowTransition(Status.OFF, Actions.TURN_ON, Status.ON)
 				.allowTransition(Status.ON, Actions.TURN_OFF, Status.OFF)
 				.build();

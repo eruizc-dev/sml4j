@@ -1,15 +1,15 @@
 package dev.eruizc.sml4j;
 
-import java.util.HashSet;
+import java.util.HashMap;
 
 /**
  * A finite State Machine
  */
 public class StateMachine<S extends Enum<S>, A extends Enum<A>> {
-	private final HashSet<Transition<S, A>> transitions;
+	private final HashMap<Integer, S> transitions;
 	private S state;
 
-	StateMachine(S initialState, HashSet<Transition<S, A>> transitions) {
+	StateMachine(S initialState, HashMap<Integer, S> transitions) {
 		this.transitions = transitions;
 		this.state = initialState;
 	}
@@ -27,10 +27,14 @@ public class StateMachine<S extends Enum<S>, A extends Enum<A>> {
 	 * @throws IllegalTransitionException The requested action cannot be executed in the current state
 	 */
 	public void transition(A action) throws IllegalTransitionException {
-		var transition = transitions.stream()
-				.filter(t -> t.matches(state, action))
-				.findFirst()
-				.orElseThrow(() -> new IllegalTransitionException(this.state, action));
-		this.state = transition.getResultingState();
+		var resultingState = transitions.get(hash(state, action));
+		if (resultingState == null) {
+			throw new IllegalTransitionException(state, action);
+		}
+		this.state = resultingState;
+	}
+
+	static int hash(Enum<?> state, Enum<?> action) {
+		return (3 * state.hashCode()) ^ (17 * action.hashCode());
 	}
 }

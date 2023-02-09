@@ -1,23 +1,13 @@
 package dev.eruizc.sml4j;
 
-import java.util.*;
+import java.util.HashMap;
 
 /**
  * Builder for {@link StateMachine}
  */
 public class StateMachineBuilder<S extends Enum<S>, A extends Enum<A>> {
-	private final HashSet<Transition<S, A>> transitions;
-	private final S initialState;
-	private boolean deterministic;
-
-	/**
-	 * @param initialState The initial state for the State Machine
-	 */
-	public StateMachineBuilder(S initialState) {
-		this.initialState = initialState;
-		this.transitions = new HashSet<>();
-		this.deterministic = true;
-	}
+	private final HashMap<Integer, S> transitions = new HashMap<>();
+	private boolean deterministic = true;
 
 	/**
 	 * @param state Initial state
@@ -26,8 +16,8 @@ public class StateMachineBuilder<S extends Enum<S>, A extends Enum<A>> {
 	 * @return Builder
 	 */
 	public StateMachineBuilder<S, A> allowTransition(S state, A action, S resultingState) {
-		var transition = new Transition<>(state, action, resultingState);
-		deterministic &= this.transitions.add(transition);
+		var hash = StateMachine.hash(state, action);
+		deterministic &= this.transitions.put(hash, resultingState) == null;
 		return this;
 	}
 

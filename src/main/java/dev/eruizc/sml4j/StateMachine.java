@@ -1,15 +1,15 @@
 package dev.eruizc.sml4j;
 
-import java.util.Set;
+import java.util.HashSet;
 
 /**
  * A finite State Machine
  */
 public class StateMachine<S extends Enum<S>, A extends Enum<A>> {
-	private final Set<Transition<S, A>> transitions;
+	private final HashSet<Transition<S, A>> transitions;
 	private S state;
 
-	StateMachine(S initialState, Set<Transition<S, A>> transitions) {
+	StateMachine(S initialState, HashSet<Transition<S, A>> transitions) {
 		this.transitions = transitions;
 		this.state = initialState;
 	}

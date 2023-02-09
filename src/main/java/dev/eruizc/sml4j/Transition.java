@@ -16,7 +16,7 @@ class Transition<State extends Enum<State>, Action extends Enum<Action>> {
 	}
 
 	public boolean matches(State from, Action action) {
-		return this.from.equals(from) && this.action.equals(action);
+		return this.from == from && this.action == action;
 	}
 
 	@Override

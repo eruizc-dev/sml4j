@@ -12,10 +12,10 @@ public class CoinFlipTest {
 	}
 
 	public static class CoinFlip {
-		private final StateMachine<Face, Action> sm = new StateMachineBuilder<Face, Action>(Face.UNKNOWN)
+		private final StateMachine<Face, Action> sm = new StateMachineBuilder<Face, Action>()
 			.allowTransition(Face.UNKNOWN, Action.FLIP, Face.HEADS)
 			.allowTransition(Face.UNKNOWN, Action.FLIP, Face.TAILS)
-			.build();
+			.buildFrom(Face.UNKNOWN);
 
 		public Face getFace() {
 			return sm.getState();

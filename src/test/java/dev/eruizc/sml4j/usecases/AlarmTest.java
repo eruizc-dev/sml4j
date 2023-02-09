@@ -23,12 +23,12 @@ public class AlarmTest {
 
 	@BeforeEach
 	void beforeEach() {
-		alarm = new StateMachineBuilder<State, Action>(State.OFF)
+		alarm = new StateMachineBuilder<State, Action>()
 			.allowTransition(State.OFF, Action.TURN_ON, State.ON)
 			.allowTransition(State.OFF, Action.TURN_OFF, State.OFF)
 			.allowTransition(State.ON, Action.TURN_ON, State.ON)
 			.allowTransition(State.ON, Action.TURN_OFF, State.OFF)
-			.build();
+			.buildFrom(State.OFF);
 	}
 
 	@Test

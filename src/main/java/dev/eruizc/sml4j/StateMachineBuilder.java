@@ -22,10 +22,11 @@ public class StateMachineBuilder<S extends Enum<S>, A extends Enum<A>> {
 	}
 
 	/**
+	 * @param initialState Initial State for the sate machine
 	 * @throws UnsupportedOperationException The transitions result in a Non-Deterministic State Machine, which are not supported by this library
 	 * @return The built State Machine
 	 */
-	public StateMachine<S, A> build() {
+	public StateMachine<S, A> buildFrom(S initialState) {
 		if (!deterministic) {
 			throw new UnsupportedOperationException("Transition defines a Non-Deterministic State Machine, which are not supported by sml4j");
 		}

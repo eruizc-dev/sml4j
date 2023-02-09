@@ -28,12 +28,12 @@ public class KanbanTest {
 
 	@BeforeEach
 	void beforeEach() {
-		card = new StateMachineBuilder<Column, Actions>(Column.BACKLOG)
+		card = new StateMachineBuilder<Column, Actions>()
 				.allowTransition(Column.BACKLOG, Actions.START, Column.WIP)
 				.allowTransition(Column.WIP, Actions.REQUEST_REVIEW, Column.REVIEW)
 				.allowTransition(Column.REVIEW, Actions.APPROVE, Column.DONE)
 				.allowTransition(Column.REVIEW, Actions.REJECT, Column.WIP)
-				.build();
+				.buildFrom(Column.BACKLOG);
 	}
 
 	@Test

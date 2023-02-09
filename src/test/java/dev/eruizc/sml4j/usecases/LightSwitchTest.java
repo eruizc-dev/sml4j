@@ -43,14 +43,26 @@ public class LightSwitchTest {
 
 	@Test
 	void cannotTurnOff() {
-		assertThrows(IllegalTransitionException.class, () -> lightSwitch.transition(Actions.TURN_OFF));
+		try {
+			lightSwitch.transition(Actions.TURN_OFF);
+			assert false: "Expected transition to throw";
+		} catch (IllegalTransitionException ex) {
+			assertEquals(Status.OFF, ex.getState());
+			assertEquals(Actions.TURN_OFF, ex.getAction());
+		}
 	}
 
 	@Test
 	void cannotTurnOnAndoffTwice() throws Exception {
 		lightSwitch.transition(Actions.TURN_ON);
 		lightSwitch.transition(Actions.TURN_OFF);
-		assertThrows(IllegalTransitionException.class, () -> lightSwitch.transition(Actions.TURN_OFF));
+		try {
+			lightSwitch.transition(Actions.TURN_OFF);
+			assert false: "Expected transition to throw";
+		} catch (IllegalTransitionException ex) {
+			assertEquals(Status.OFF, ex.getState());
+			assertEquals(Actions.TURN_OFF, ex.getAction());
+		}
 	}
 
 	static enum Status {

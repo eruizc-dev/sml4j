@@ -1,6 +1,6 @@
 package dev.eruizc.sml4j;
 
-class Transition<State, Action> {
+class Transition<State extends Enum<State>, Action extends Enum<Action>> {
 	private final State from;
 	private final Action action;
 	private final State to;

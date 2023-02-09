@@ -5,7 +5,7 @@ import java.util.*;
 /**
  * Builder for {@link StateMachine}
  */
-public class StateMachineBuilder<S, A> {
+public class StateMachineBuilder<S extends Enum<S>, A extends Enum<A>> {
 	private final List<Transition<S, A>> transitions = new LinkedList<>();
 	private S initialState;
 

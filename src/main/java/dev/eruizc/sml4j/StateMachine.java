@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * A finite State Machine
  */
-public class StateMachine<S, A> {
+public class StateMachine<S extends Enum<S>, A extends Enum<A>> {
 	private final List<Transition<S, A>> transitions;
 	private S state;
 

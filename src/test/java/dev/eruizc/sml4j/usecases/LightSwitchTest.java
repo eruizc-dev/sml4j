@@ -29,13 +29,13 @@ public class LightSwitchTest {
 	}
 
 	@Test
-	void turnsOn() {
+	void turnsOn() throws Exception {
 		lightSwitch.transition(Actions.TURN_ON);
 		assertEquals(Status.ON, lightSwitch.getState());
 	}
 
 	@Test
-	void turnsOnAndOff() {
+	void turnsOnAndOff() throws Exception {
 		lightSwitch.transition(Actions.TURN_ON);
 		lightSwitch.transition(Actions.TURN_OFF);
 		assertEquals(Status.OFF, lightSwitch.getState());
@@ -43,14 +43,14 @@ public class LightSwitchTest {
 
 	@Test
 	void cannotTurnOff() {
-		assertThrows(IllegalStateException.class, () -> lightSwitch.transition(Actions.TURN_OFF));
+		assertThrows(IllegalTransitionException.class, () -> lightSwitch.transition(Actions.TURN_OFF));
 	}
 
 	@Test
-	void cannotTurnOnAndoffTwice() {
+	void cannotTurnOnAndoffTwice() throws Exception {
 		lightSwitch.transition(Actions.TURN_ON);
 		lightSwitch.transition(Actions.TURN_OFF);
-		assertThrows(IllegalStateException.class, () -> lightSwitch.transition(Actions.TURN_OFF));
+		assertThrows(IllegalTransitionException.class, () -> lightSwitch.transition(Actions.TURN_OFF));
 	}
 
 	static enum Status {

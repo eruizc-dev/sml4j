@@ -24,13 +24,13 @@ public class StateMachine<S extends Enum<S>, A extends Enum<A>> {
 
 	/**
 	 * @param action The action to be executed
-	 * @throws IllegalStateException Action cannot be executed in the current state
+	 * @throws IllegalTransitionException The requested action cannot be executed in the current state
 	 */
-	public void transition(A action) {
+	public void transition(A action) throws IllegalTransitionException {
 		var transition = transitions.stream()
 				.filter(t -> t.matches(state, action))
 				.findFirst()
-				.orElseThrow(() -> new IllegalStateException("Illegal state transition from " + this.state + " with action " + action));
+				.orElseThrow(() -> new IllegalTransitionException(this.state, action));
 		this.state = transition.getTo();
 	}
 }

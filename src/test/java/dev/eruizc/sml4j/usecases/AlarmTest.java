@@ -32,7 +32,7 @@ public class AlarmTest {
 	}
 
 	@Test
-	void completeFlow() {
+	void completeFlow() throws Exception {
 		assertEquals(State.OFF, alarm.getState());
 
 		alarm.transition(Action.TURN_OFF);

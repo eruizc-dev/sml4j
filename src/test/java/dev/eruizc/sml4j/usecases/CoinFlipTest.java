@@ -21,7 +21,7 @@ public class CoinFlipTest {
 			return sm.getState();
 		}
 
-		public void flip() {
+		public void flip() throws Exception {
 			sm.transition(Action.FLIP);
 		}
 

@@ -37,7 +37,7 @@ public class KanbanTest {
 	}
 
 	@Test
-	void completeFlow() {
+	void completeFlow() throws Exception {
 		assertEquals(Column.BACKLOG, card.getState());
 
 		card.transition(Actions.START);
@@ -57,7 +57,7 @@ public class KanbanTest {
 	}
 
 	@Test
-	void canBeRejectedManyTimes() {
+	void canBeRejectedManyTimes() throws Exception {
 		card.transition(Actions.START);
 		card.transition(Actions.REQUEST_REVIEW);
 

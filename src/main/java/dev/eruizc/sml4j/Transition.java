@@ -18,4 +18,25 @@ class Transition<State, Action> {
 	public boolean matches(State from, Action action) {
 		return this.from.equals(from) && this.action.equals(action);
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null || getClass() != obj.getClass()) {
+			return false;
+		}
+		var other = (Transition<?, ?>) obj;
+		return this.from == other.from && this.action == other.action;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + from.hashCode();
+		result = prime * result + action.hashCode();
+		return result;
+	}
 }

@@ -20,13 +20,13 @@ public class StateMachineBuilder<S extends Enum<S>, A extends Enum<A>> {
 	}
 
 	/**
-	 * @param from Initial state
+	 * @param state Initial state
 	 * @param action Allowed action given the initial state
-	 * @param to Resulting state
+	 * @param resultingState Resulting state
 	 * @return Builder
 	 */
-	public StateMachineBuilder<S, A> allowTransition(S from, A action, S to) {
-		var transition = new Transition<>(from, action, to);
+	public StateMachineBuilder<S, A> allowTransition(S state, A action, S resultingState) {
+		var transition = new Transition<>(state, action, resultingState);
 		deterministic &= this.transitions.add(transition);
 		return this;
 	}

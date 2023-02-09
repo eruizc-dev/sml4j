@@ -31,6 +31,6 @@ public class StateMachine<S extends Enum<S>, A extends Enum<A>> {
 				.filter(t -> t.matches(state, action))
 				.findFirst()
 				.orElseThrow(() -> new IllegalTransitionException(this.state, action));
-		this.state = transition.getTo();
+		this.state = transition.getResultingState();
 	}
 }

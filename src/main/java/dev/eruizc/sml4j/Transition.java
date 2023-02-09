@@ -3,16 +3,16 @@ package dev.eruizc.sml4j;
 class Transition<State extends Enum<State>, Action extends Enum<Action>> {
 	private final State from;
 	private final Action action;
-	private final State to;
+	private final State resultingState;
 
-	public Transition(State from, Action action, State to) {
-		this.from = from;
+	public Transition(State state, Action action, State resultingState) {
+		this.from = state;
 		this.action = action;
-		this.to = to;
+		this.resultingState = resultingState;
 	}
 
-	public State getTo() {
-		return to;
+	public State getResultingState() {
+		return resultingState;
 	}
 
 	public boolean matches(State from, Action action) {

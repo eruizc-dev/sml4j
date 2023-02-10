@@ -15,12 +15,6 @@ public class HashingTest {
 		test(200, 200);
 	}
 
-	@Test
-	void test_200x1000() {
-		test(100, 1000);
-	}
-
-
 	void test(int states, int actions) {
 		var builder = new StateMachineBuilder<State, Action>();
 

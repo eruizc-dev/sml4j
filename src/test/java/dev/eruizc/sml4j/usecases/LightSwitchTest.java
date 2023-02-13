@@ -42,6 +42,16 @@ public class LightSwitchTest {
 	}
 
 	@Test
+	void hasValidTransitions() throws IllegalTransitionException {
+		assertTrue(lightSwitch.getTransitions().contains(Actions.TURN_ON));
+		assertFalse(lightSwitch.getTransitions().contains(Actions.TURN_OFF));
+		lightSwitch.transition(Actions.TURN_ON);
+		assertTrue(lightSwitch.getTransitions().contains(Actions.TURN_OFF));
+		assertFalse(lightSwitch.getTransitions().contains(Actions.TURN_ON));
+		lightSwitch.transition(Actions.TURN_OFF);
+	}
+
+	@Test
 	void cannotTurnOff() {
 		try {
 			lightSwitch.transition(Actions.TURN_OFF);

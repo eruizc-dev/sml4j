@@ -29,7 +29,15 @@ public class StateMachine<S extends Enum<S>, T extends Enum<T>> {
 	}
 
 	/**
-	 * @param transition
+	 * @param transition To validate
+	 * @throws IllegalTransitionException The requested action cannot be executed in the current state
+	 */
+	public void validateTransition(T transition) throws IllegalTransitionException {
+		this.current.next(transition);
+	}
+
+	/**
+	 * @param transition To move to
 	 * @throws IllegalTransitionException The requested action cannot be executed in the current state
 	 */
 	public void transition(T transition) throws IllegalTransitionException {
